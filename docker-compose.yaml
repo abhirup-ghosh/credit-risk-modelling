@@ -1,0 +1,54 @@
+# Credit: https://github.com/itdxer/klarna-task
+
+version: "3.4"
+
+services:
+  credit-risk-modelling-base:
+    build: .
+    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+
+  rest-api-prod:
+    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    depends_on:
+      - credit-risk-modelling-base
+    command: python src/server.py
+    environment:
+      - RUN_PROD=1
+    ports:
+      - "80:80"
+
+  rest-api:
+    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    depends_on:
+      - credit-risk-modelling-base
+    command: python src/server.py
+    ports:
+      - "5001:5000"
+    volumes:
+      - .:/home/project
+
+  train-model:
+    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    depends_on:
+      - credit-risk-modelling-base
+    command: python src/train.py
+      --input-csv /home/project/data/raw/dataset.csv
+      --output-model /home/project/models/model.joblib
+      --output-test-pred /home/project/data/predictions/test_predictions.csv
+    volumes:
+      - .:/home/project
+
+  notebook:
+    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    depends_on:
+      - credit-risk-modelling-base
+    command: jupyter notebook
+      --notebook-dir=/home/project/notebooks/exploration
+      --ip 0.0.0.0
+      --no-browser
+      --allow-root
+      --port 8899
+    ports:
+      - "8899:8899"
+    volumes:
+      - .:/home/project
