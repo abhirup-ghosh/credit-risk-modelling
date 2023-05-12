@@ -59,8 +59,9 @@ $ aws ecr create-repository --repository-name credit-risk-modelling
 Set environmental variable which will indicate the registry that should be used. For example
 
 ```bash
-export DOCKER_REGISTRY=424261332927.dkr.ecr.eu-central-1.amazonaws.com
+export DOCKER_REGISTRY=166783209982.dkr.ecr.eu-north-1.amazonaws.com
 ```
+**Note:** This container does not exist anymore. The user of the code would need to create a new EC2 repository and redirect the `${DOCKER_REGISTRY}` variable accordingly.
 
 2. Build docker image
 
