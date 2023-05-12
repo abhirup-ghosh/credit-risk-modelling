@@ -5,10 +5,10 @@ version: "3.4"
 services:
   credit-risk-modelling-base:
     build: .
-    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    image: ${DOCKER_REGISTRY}/credit-risk-modelling
 
   rest-api-prod:
-    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    image: ${DOCKER_REGISTRY}/credit-risk-modelling
     depends_on:
       - credit-risk-modelling-base
     command: python src/server.py
@@ -18,7 +18,7 @@ services:
       - "80:80"
 
   rest-api:
-    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    image: ${DOCKER_REGISTRY}/credit-risk-modelling
     depends_on:
       - credit-risk-modelling-base
     command: python src/server.py
@@ -28,7 +28,7 @@ services:
       - .:/home/project
 
   train-model:
-    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    image: ${DOCKER_REGISTRY}/credit-risk-modelling
     depends_on:
       - credit-risk-modelling-base
     command: python src/train.py
@@ -39,7 +39,7 @@ services:
       - .:/home/project
 
   notebook:
-    image: credit-risk-modelling #${DOCKER_REGISTRY}/credit-risk-modelling
+    image: ${DOCKER_REGISTRY}/credit-risk-modelling
     depends_on:
       - credit-risk-modelling-base
     command: jupyter notebook
