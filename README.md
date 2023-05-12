@@ -20,6 +20,8 @@ credit-risk-modelling/
 |-- notebooks/                      # Jupyter notebooks for each stage of the workflow.
 |   |-- exploration/                # notebooks related to data exploration.
 |   |   |-- data_exploration.ipynb  # the code for exploring and visualizing the data.
+|   |-- modelling/                  # notebooks related to data modelling.
+|   |   |-- data_modelling.ipynb    # the code for modelling.
 |-- opt/                            # optional code for the project
 |   |-- requirements.txt            # pre-requisite pip-installable packages
 |-- src/                            # source code for the project.
