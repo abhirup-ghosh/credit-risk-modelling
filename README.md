@@ -2,7 +2,7 @@
 
 This is a case study to build a supervised learning model to predict the probability of default. The model is then exposed with an AWS API Endpoint, and can be used to make predictions through API calls.
 
-**Keywords:** #LightGBM #Docker #AWSECR #AWSEC2 #RESTAPI
+**Keywords:** Regression, LightGBM, Docker, AWS-ECR, AWS-EC2, REST-API
 
 ## Project structure
 
@@ -37,6 +37,7 @@ credit-risk-modelling/
 |-- docker-compose.yaml
 ```
 
+**Disclaimer:** The datasets were confidential and are not included here. However, this code can be also run, with appropriate dataset-specific adjustments, on standard Kaggle datasets, eg, [here](https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset).
 
 ## Dependencies
 
